@@ -4,7 +4,7 @@ use std::fs::File;
 use std::io::{BufReader, Write};
 
 use heck::{ToPascalCase, ToSnakeCase};
-use instrospection_schema::{GraphQlTypeRef, IntrospectionQuery};
+use instrospection_schema::{GraphQlTypeKind, GraphQlTypeRef, IntrospectionQuery};
 
 fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {
     match ty {
@@ -47,6 +47,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .find(|ty| ty.name.as_ref() == Some(&field_type_name))
             .expect(&format!("No type found for field '{}'", field_type_name));
 
+        let mut fragment_field_names = Vec::new();
+        if let Some(sub_fields) = &field_type.fields {
+            for sub_field in sub_fields {
+                fragment_field_names.push(sub_field.name.clone());
+            }
+        }
+
         let contents = format!(
             r#"
 query {query_name}() {{
@@ -56,12 +63,13 @@ query {query_name}() {{
 }}
 
 fragment {fragment_name} on {fragment_name} {{
-
+    {fragment_fields}
 }}
         "#,
             query_name = field.name.to_pascal_case(),
             field_name = field.name,
-            fragment_name = field_type_name.to_pascal_case()
+            fragment_name = field_type_name.to_pascal_case(),
+            fragment_fields = fragment_field_names.join("\n    ")
         );
 
         let mut graphql_file = File::create(format!(
@@ -69,7 +77,7 @@ fragment {fragment_name} on {fragment_name} {{
             field.name.to_snake_case()
         ))?;
 
-        graphql_file.write_all(contents.as_bytes())?;
+        graphql_file.write_all(contents.trim().as_bytes())?;
     }
 
     Ok(())

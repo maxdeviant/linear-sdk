@@ -4,7 +4,7 @@ pub mod issue {
     #![allow(dead_code)]
     use std::result::Result;
     pub const OPERATION_NAME: &str = "Issue";
-    pub const QUERY : & str = "query Issue($id: String!) {\n  issue(id: $id) {\n    ...Issue\n  }\n}\n\nfragment Issue on Issue {\n  __typename\n  trashed\n  url\n  identifier\n  priorityLabel\n  previousIdentifiers\n  customerTicketCount\n  branchName\n  cycle {\n    id\n  }\n  dueDate\n  estimate\n  description\n  title\n  number\n  updatedAt\n  boardOrder\n  sortOrder\n  subIssueSortOrder\n  parent {\n    id\n  }\n  priority\n  project {\n    id\n  }\n  team {\n    id\n  }\n  archivedAt\n  createdAt\n  autoArchivedAt\n  autoClosedAt\n  canceledAt\n  completedAt\n  startedAt\n  snoozedUntilAt\n  id\n  assignee {\n    id\n  }\n  creator {\n    id\n  }\n  snoozedBy {\n    id\n  }\n  state {\n    id\n  }\n}\n" ;
+    pub const QUERY : & str = "query Issue($id: String!) {\n    issue(id: $id) {\n        ...Issue\n    }\n}\n\nfragment Issue on Issue {\n    archivedAt\n    autoArchivedAt\n    autoClosedAt\n    boardOrder\n    branchName\n    canceledAt\n    completedAt\n    createdAt\n    customerTicketCount\n    description\n    dueDate\n    estimate\n    id\n    identifier\n    number\n    previousIdentifiers\n    priority\n    priorityLabel\n    snoozedUntilAt\n    sortOrder\n    startedAt\n    subIssueSortOrder\n    title\n    trashed\n    triagedAt\n    updatedAt\n    url\n}" ;
     use super::*;
     use serde::{Deserialize, Serialize};
     #[allow(dead_code)]
@@ -24,91 +24,52 @@ pub mod issue {
     impl Variables {}
     #[derive(Deserialize, Debug)]
     pub struct Issue {
-        pub trashed: Option<Boolean>,
-        pub url: String,
-        pub identifier: String,
-        #[serde(rename = "priorityLabel")]
-        pub priority_label: String,
-        #[serde(rename = "previousIdentifiers")]
-        pub previous_identifiers: Vec<String>,
-        #[serde(rename = "customerTicketCount")]
-        pub customer_ticket_count: Int,
-        #[serde(rename = "branchName")]
-        pub branch_name: String,
-        pub cycle: Option<IssueCycle>,
-        #[serde(rename = "dueDate")]
-        pub due_date: Option<TimelessDate>,
-        pub estimate: Option<Float>,
-        pub description: Option<String>,
-        pub title: String,
-        pub number: Float,
-        #[serde(rename = "updatedAt")]
-        pub updated_at: DateTime,
-        #[serde(rename = "boardOrder")]
-        #[deprecated(note = "Will be removed in near future, please use `sortOrder` instead")]
-        pub board_order: Float,
-        #[serde(rename = "sortOrder")]
-        pub sort_order: Float,
-        #[serde(rename = "subIssueSortOrder")]
-        pub sub_issue_sort_order: Option<Float>,
-        pub parent: Option<IssueParent>,
-        pub priority: Float,
-        pub project: Option<IssueProject>,
-        pub team: IssueTeam,
         #[serde(rename = "archivedAt")]
         pub archived_at: Option<DateTime>,
-        #[serde(rename = "createdAt")]
-        pub created_at: DateTime,
         #[serde(rename = "autoArchivedAt")]
         pub auto_archived_at: Option<DateTime>,
         #[serde(rename = "autoClosedAt")]
         pub auto_closed_at: Option<DateTime>,
+        #[serde(rename = "boardOrder")]
+        #[deprecated(note = "Will be removed in near future, please use `sortOrder` instead")]
+        pub board_order: Float,
+        #[serde(rename = "branchName")]
+        pub branch_name: String,
         #[serde(rename = "canceledAt")]
         pub canceled_at: Option<DateTime>,
         #[serde(rename = "completedAt")]
         pub completed_at: Option<DateTime>,
-        #[serde(rename = "startedAt")]
-        pub started_at: Option<DateTime>,
+        #[serde(rename = "createdAt")]
+        pub created_at: DateTime,
+        #[serde(rename = "customerTicketCount")]
+        pub customer_ticket_count: Int,
+        pub description: Option<String>,
+        #[serde(rename = "dueDate")]
+        pub due_date: Option<TimelessDate>,
+        pub estimate: Option<Float>,
+        pub id: ID,
+        pub identifier: String,
+        pub number: Float,
+        #[serde(rename = "previousIdentifiers")]
+        pub previous_identifiers: Vec<String>,
+        pub priority: Float,
+        #[serde(rename = "priorityLabel")]
+        pub priority_label: String,
         #[serde(rename = "snoozedUntilAt")]
         pub snoozed_until_at: Option<DateTime>,
-        pub id: ID,
-        pub assignee: Option<IssueAssignee>,
-        pub creator: Option<IssueCreator>,
-        #[serde(rename = "snoozedBy")]
-        pub snoozed_by: Option<IssueSnoozedBy>,
-        pub state: IssueState,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueCycle {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueParent {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueProject {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueTeam {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueAssignee {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueCreator {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueSnoozedBy {
-        pub id: ID,
-    }
-    #[derive(Deserialize, Debug)]
-    pub struct IssueState {
-        pub id: ID,
+        #[serde(rename = "sortOrder")]
+        pub sort_order: Float,
+        #[serde(rename = "startedAt")]
+        pub started_at: Option<DateTime>,
+        #[serde(rename = "subIssueSortOrder")]
+        pub sub_issue_sort_order: Option<Float>,
+        pub title: String,
+        pub trashed: Option<Boolean>,
+        #[serde(rename = "triagedAt")]
+        pub triaged_at: Option<DateTime>,
+        #[serde(rename = "updatedAt")]
+        pub updated_at: DateTime,
+        pub url: String,
     }
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {

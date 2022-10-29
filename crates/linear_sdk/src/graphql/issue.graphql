@@ -1,59 +1,35 @@
 query Issue($id: String!) {
-  issue(id: $id) {
-    ...Issue
-  }
+    issue(id: $id) {
+        ...Issue
+    }
 }
 
 fragment Issue on Issue {
-  __typename
-  trashed
-  url
-  identifier
-  priorityLabel
-  previousIdentifiers
-  customerTicketCount
-  branchName
-  cycle {
+    archivedAt
+    autoArchivedAt
+    autoClosedAt
+    boardOrder
+    branchName
+    canceledAt
+    completedAt
+    createdAt
+    customerTicketCount
+    description
+    dueDate
+    estimate
     id
-  }
-  dueDate
-  estimate
-  description
-  title
-  number
-  updatedAt
-  boardOrder
-  sortOrder
-  subIssueSortOrder
-  parent {
-    id
-  }
-  priority
-  project {
-    id
-  }
-  team {
-    id
-  }
-  archivedAt
-  createdAt
-  autoArchivedAt
-  autoClosedAt
-  canceledAt
-  completedAt
-  startedAt
-  snoozedUntilAt
-  id
-  assignee {
-    id
-  }
-  creator {
-    id
-  }
-  snoozedBy {
-    id
-  }
-  state {
-    id
-  }
+    identifier
+    number
+    previousIdentifiers
+    priority
+    priorityLabel
+    snoozedUntilAt
+    sortOrder
+    startedAt
+    subIssueSortOrder
+    title
+    trashed
+    triagedAt
+    updatedAt
+    url
 }

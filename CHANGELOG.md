@@ -14,4 +14,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release
 
 [unreleased]: https://github.com/maxdeviant/linear-sdk/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/maxdeviant/linear-sdk/compare...v0.0.1
+[0.0.1]: https://github.com/maxdeviant/linear-sdk/compare/57ddb11...v0.0.1

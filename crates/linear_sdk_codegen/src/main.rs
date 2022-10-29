@@ -33,6 +33,10 @@ fn render_type_name(ty: &GraphQlTypeRef) -> String {
     }
 }
 
+fn sanitize_name(name: String) -> String {
+    name.replace("OAuth", "Oauth")
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let schema_file = File::open("schema.json")?;
     let buf_reader = BufReader::new(schema_file);
@@ -100,8 +104,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         }
 
-        fragment_field_names.sort_unstable();
-
         let contents = format!(
             r#"
 query {query_name}{args_list} {{
@@ -114,7 +116,7 @@ fragment {fragment_name} on {fragment_name} {{
     {fragment_fields}
 }}
         "#,
-            query_name = field.name.to_pascal_case(),
+            query_name = sanitize_name(field.name.clone()).to_pascal_case(),
             args_list = if has_args {
                 format!("({})", args_list)
             } else {
@@ -132,7 +134,7 @@ fragment {fragment_name} on {fragment_name} {{
 
         let mut graphql_file = File::create(format!(
             "crates/linear_sdk/src/graphql/{}.graphql",
-            field.name.to_snake_case()
+            sanitize_name(field.name.clone()).to_snake_case()
         ))?;
 
         graphql_file.write_all(contents.trim().as_bytes())?;

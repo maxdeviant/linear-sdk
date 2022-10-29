@@ -5,31 +5,31 @@ query Issue($id: String!) {
 }
 
 fragment Issue on Issue {
-    archivedAt
-    autoArchivedAt
-    autoClosedAt
-    boardOrder
-    branchName
-    canceledAt
-    completedAt
-    createdAt
-    customerTicketCount
-    description
-    dueDate
-    estimate
     id
-    identifier
+    createdAt
+    updatedAt
+    archivedAt
     number
-    previousIdentifiers
+    title
+    description
     priority
-    priorityLabel
-    snoozedUntilAt
+    estimate
+    boardOrder
     sortOrder
     startedAt
-    subIssueSortOrder
-    title
-    trashed
+    completedAt
     triagedAt
-    updatedAt
+    canceledAt
+    autoClosedAt
+    autoArchivedAt
+    dueDate
+    trashed
+    snoozedUntilAt
+    previousIdentifiers
+    subIssueSortOrder
+    priorityLabel
+    identifier
     url
+    branchName
+    customerTicketCount
 }

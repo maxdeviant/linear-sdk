@@ -41,6 +41,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for field in query_fields {
         let field_type_name = resolve_type_name(&field.ty);
 
+        let has_args = !field.args.is_empty();
+        let args_list = field
+            .args
+            .iter()
+            .map(|arg| {
+                format!(
+                    "${}: {}",
+                    arg.name.to_snake_case(),
+                    resolve_type_name(&arg.ty)
+                )
+            })
+            .collect::<Vec<_>>()
+            .join(", ");
+        let applied_args_list = field
+            .args
+            .iter()
+            .map(|arg| format!("{}: ${}", arg.name, arg.name.to_snake_case()))
+            .collect::<Vec<_>>()
+            .join(", ");
+
         let field_type = schema
             .types
             .iter()
@@ -56,8 +76,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         let contents = format!(
             r#"
-query {query_name}() {{
-    {field_name}() {{
+query {query_name}{args_list} {{
+    {field_name}{applied_args_list} {{
         ...{fragment_name}
     }}
 }}
@@ -67,6 +87,16 @@ fragment {fragment_name} on {fragment_name} {{
 }}
         "#,
             query_name = field.name.to_pascal_case(),
+            args_list = if has_args {
+                format!("({})", args_list)
+            } else {
+                String::new()
+            },
+            applied_args_list = if has_args {
+                format!("({})", applied_args_list)
+            } else {
+                String::new()
+            },
             field_name = field.name,
             fragment_name = field_type_name.to_pascal_case(),
             fragment_fields = fragment_field_names.join("\n    ")

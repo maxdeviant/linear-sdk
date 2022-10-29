@@ -1,6 +1,6 @@
 # linear_sdk
 
-A Linear SDK for Rust
+A Linear SDK for Rust.
 
 ## Development
 

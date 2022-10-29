@@ -1,6 +1,13 @@
 [package]
 name = "linear_sdk"
-version = "0.1.0"
+version = "0.0.1"
+description = "A Linear SDK for interacting with the Linear GraphQL API."
+repository = "https://github.com/maxdeviant/linear-sdk"
+documentation = "https://docs.rs/linear_sdk/"
+categories = ["api-bindings"]
+keywords = ["linear", "api", "sdk"]
+authors = ["Marshall Bowers <elliott.codes@gmail.com>"]
+license = "MIT"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

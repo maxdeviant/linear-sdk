@@ -15,8 +15,8 @@ pub mod issue {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type DateTime = crate::custom_scalars::DateTime;
-    type TimelessDate = crate::custom_scalars::TimelessDate;
+    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
+    type DateTime = crate::graphql::custom_scalars::DateTime;
     #[derive(Serialize)]
     pub struct Variables {
         pub id: String,

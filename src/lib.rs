@@ -1,5 +1,4 @@
-mod custom_scalars;
-mod generated;
+mod graphql;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right

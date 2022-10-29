@@ -13,5 +13,5 @@ graphql-client introspect-schema https://api.linear.app/graphql --output schema.
 ### Run GraphQL Codegen
 
 ```
-graphql-client generate --schema-path=schema.json --custom-scalars-module='crate::custom_scalars' --output-directory src/generated/ issue.graphql
+graphql-client generate --schema-path=schema.json --custom-scalars-module='crate::graphql::custom_scalars' --output-directory src/graphql/generated/ src/graphql/issue.graphql
 ```

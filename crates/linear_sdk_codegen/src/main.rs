@@ -83,9 +83,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let mut fragment_field_names = Vec::new();
         if let Some(sub_fields) = &field_type.fields {
             for sub_field in sub_fields {
-                fragment_field_names.push(sub_field.name.clone());
+                let sub_field_type_name = resolve_type_name(&sub_field.ty);
+
+                let sub_field_type = schema
+                    .types
+                    .iter()
+                    .find(|ty| ty.name.as_ref() == Some(&sub_field_type_name))
+                    .expect(&format!(
+                        "No type found for sub field '{}'",
+                        sub_field_type_name
+                    ));
+
+                if sub_field_type.kind == GraphQlTypeKind::Scalar {
+                    fragment_field_names.push(sub_field.name.clone());
+                }
             }
         }
+
+        fragment_field_names.sort_unstable();
 
         let contents = format!(
             r#"

@@ -39,7 +39,7 @@ pub struct GraphQlFullType {
     pub of_type: Option<GraphQlTypeRef>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum GraphQlTypeKind {
     Scalar,

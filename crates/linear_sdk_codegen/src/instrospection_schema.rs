@@ -16,7 +16,7 @@ pub struct IntrospectionQueryData {
 pub struct IntrospectionSchema {
     pub query_type: QueryType,
     pub mutation_type: Option<MutationType>,
-    pub types: Vec<GraphQlType>,
+    pub types: Vec<GraphQlFullType>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -31,12 +31,12 @@ pub struct MutationType {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct GraphQlType {
+pub struct GraphQlFullType {
     pub kind: GraphQlTypeKind,
     pub name: Option<String>,
     pub description: Option<String>,
     pub fields: Option<Vec<Field>>,
-    pub of_type: Option<Box<GraphQlType>>,
+    pub of_type: Option<GraphQlTypeRef>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -59,7 +59,7 @@ pub struct Field {
     pub description: Option<String>,
 
     #[serde(rename = "type")]
-    pub ty: GraphQlType,
+    pub ty: GraphQlTypeRef,
 
     pub args: Vec<InputValue>,
     pub is_deprecated: bool,
@@ -73,7 +73,26 @@ pub struct InputValue {
     pub description: Option<String>,
 
     #[serde(rename = "type")]
-    pub ty: GraphQlType,
+    pub ty: GraphQlTypeRef,
 
     pub default_value: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(tag = "kind", rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum GraphQlTypeRef {
+    Scalar { name: String },
+    Object { name: String },
+    Interface { name: String },
+    Union { name: String },
+    Enum { name: String },
+    InputObject { name: String },
+    NonNull(Box<OfType>),
+    List(Box<OfType>),
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OfType {
+    pub of_type: GraphQlTypeRef,
 }

@@ -57,6 +57,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let query_fields = query_type.fields.as_ref().expect("Query has no fields");
 
     let mut emitted_graphql_modules: Vec<String> = Vec::new();
+    let mut generated_client_impls: Vec<String> = Vec::new();
 
     for field in query_fields {
         let field_type_name = resolve_type_name(&field.ty);
@@ -119,7 +120,7 @@ fragment {fragment_name} on {fragment_name} {{
     __typename
     {fragment_fields}
 }}
-        "#,
+            "#,
             query_name = sanitize_name(field.name.clone()).to_pascal_case(),
             args_list = if has_args {
                 format!("({})", args_list)
@@ -145,7 +146,31 @@ fragment {fragment_name} on {fragment_name} {{
 
         graphql_file.write_all(contents.trim().as_bytes())?;
 
-        emitted_graphql_modules.push(rust_module_name);
+        emitted_graphql_modules.push(rust_module_name.clone());
+
+        let generated_client_impl = format!(
+            r#"
+impl crate::LinearClient {{
+    pub async fn {fn_name}(
+        &self,
+        variables: crate::graphql::{module_name}::Variables,
+    ) -> Result<crate::graphql::{module_name}::ResponseData, reqwest::Error> {{
+        let response_body = self
+            .post_graphql::<crate::graphql::{operation_name}>(variables)
+            .await?;
+
+        Ok(response_body.data.expect("No data"))
+    }}
+}}
+            "#,
+            fn_name = sanitize_name(field.name.clone()).to_snake_case(),
+            module_name = rust_module_name,
+            operation_name = sanitize_name(field.name.clone()).to_pascal_case()
+        )
+        .trim()
+        .to_string();
+
+        generated_client_impls.push(generated_client_impl);
     }
 
     emitted_graphql_modules.sort_unstable();
@@ -170,12 +195,37 @@ fragment {fragment_name} on {fragment_name} {{
 
     generated_module_file.write_all(
         emitted_graphql_modules
-            .into_iter()
+            .iter()
             .map(|module_name| format!("pub mod {};", module_name))
             .collect::<Vec<_>>()
             .join("\n")
             .as_bytes(),
     )?;
+
+    let mut generated_graphql_module_file = File::create("crates/linear_sdk/src/graphql.rs")?;
+
+    generated_graphql_module_file.write_all(
+        format!(
+            r#"
+mod custom_scalars;
+mod generated;
+
+// Auto-generated:
+{}
+            "#,
+            emitted_graphql_modules
+                .iter()
+                .map(|module_name| format!("pub use generated::{}::*;", module_name))
+                .collect::<Vec<_>>()
+                .join("\n")
+        )
+        .trim()
+        .as_bytes(),
+    )?;
+
+    let mut generated_client_file = File::create("crates/linear_sdk/src/client_generated.rs")?;
+
+    generated_client_file.write_all(generated_client_impls.join("\n\n").as_bytes())?;
 
     Ok(())
 }

@@ -45,19 +45,6 @@ impl LinearClient {
 
         response.json().await
     }
-
-    pub async fn issue(
-        &self,
-        id: &str,
-    ) -> Result<crate::graphql::issue::issue::ResponseData, reqwest::Error> {
-        let response_body = self
-            .post_graphql::<crate::graphql::issue::Issue>(crate::graphql::issue::issue::Variables {
-                id: id.to_string(),
-            })
-            .await?;
-
-        Ok(response_body.data.expect("No data"))
-    }
 }
 
 /// A builder for a Linear client.

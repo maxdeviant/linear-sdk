@@ -1,0 +1,36 @@
+query IssueVcsBranchSearch($branch_name: String!) {
+    issueVcsBranchSearch(branchName: $branch_name) {
+        ...Issue
+    }
+}
+
+fragment Issue on Issue {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    number
+    title
+    description
+    priority
+    estimate
+    boardOrder
+    sortOrder
+    startedAt
+    completedAt
+    triagedAt
+    canceledAt
+    autoClosedAt
+    autoArchivedAt
+    dueDate
+    trashed
+    snoozedUntilAt
+    previousIdentifiers
+    subIssueSortOrder
+    priorityLabel
+    identifier
+    url
+    branchName
+    customerTicketCount
+}

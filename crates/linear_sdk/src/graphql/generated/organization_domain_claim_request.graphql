@@ -1,0 +1,10 @@
+query OrganizationDomainClaimRequest($id: String!) {
+    organizationDomainClaimRequest(id: $id) {
+        ...OrganizationDomainClaimPayload
+    }
+}
+
+fragment OrganizationDomainClaimPayload on OrganizationDomainClaimPayload {
+    __typename
+    verificationString
+}

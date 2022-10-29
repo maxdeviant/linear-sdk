@@ -1,0 +1,17 @@
+query Notification($id: String!) {
+    notification(id: $id) {
+        ...Notification
+    }
+}
+
+fragment Notification on Notification {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    type
+    readAt
+    emailedAt
+    snoozedUntilAt
+}

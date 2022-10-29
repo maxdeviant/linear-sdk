@@ -1,0 +1,16 @@
+query ProjectUpdate($id: String!) {
+    projectUpdate(id: $id) {
+        ...ProjectUpdate
+    }
+}
+
+fragment ProjectUpdate on ProjectUpdate {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    body
+    editedAt
+    url
+}

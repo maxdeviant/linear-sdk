@@ -1,0 +1,11 @@
+query SsoUrlFromEmail($is_desktop: Boolean, $email: String!) {
+    ssoUrlFromEmail(isDesktop: $is_desktop, email: $email) {
+        ...SsoUrlFromEmailResponse
+    }
+}
+
+fragment SsoUrlFromEmailResponse on SsoUrlFromEmailResponse {
+    __typename
+    success
+    samlSsoUrl
+}

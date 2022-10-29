@@ -1,10 +1,11 @@
-query Issue($id: String!) {
-    issue(id: $id) {
+query AttachmentIssue($id: String!) {
+    attachmentIssue(id: $id) {
         ...Issue
     }
 }
 
 fragment Issue on Issue {
+    __typename
     id
     createdAt
     updatedAt

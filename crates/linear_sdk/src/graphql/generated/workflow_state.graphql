@@ -1,0 +1,18 @@
+query WorkflowState($id: String!) {
+    workflowState(id: $id) {
+        ...WorkflowState
+    }
+}
+
+fragment WorkflowState on WorkflowState {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    color
+    description
+    position
+    type
+}

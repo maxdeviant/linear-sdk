@@ -1,0 +1,20 @@
+query ApplicationWithAuthorization($actor: String, $redirect_uri: String, $scope: [String!]!, $client_id: String!) {
+    applicationWithAuthorization(actor: $actor, redirectUri: $redirect_uri, scope: $scope, clientId: $client_id) {
+        ...UserAuthorizedApplication
+    }
+}
+
+fragment UserAuthorizedApplication on UserAuthorizedApplication {
+    __typename
+    id
+    clientId
+    name
+    description
+    developer
+    developerUrl
+    imageUrl
+    isAuthorized
+    createdByLinear
+    webhooksEnabled
+    approvalErrorCode
+}

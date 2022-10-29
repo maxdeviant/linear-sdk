@@ -1,0 +1,20 @@
+query CustomView($id: String!) {
+    customView(id: $id) {
+        ...CustomView
+    }
+}
+
+fragment CustomView on CustomView {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    description
+    icon
+    color
+    filters
+    filterData
+    shared
+}

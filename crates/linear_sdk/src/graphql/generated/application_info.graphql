@@ -1,0 +1,16 @@
+query ApplicationInfo($client_id: String!) {
+    applicationInfo(clientId: $client_id) {
+        ...Application
+    }
+}
+
+fragment Application on Application {
+    __typename
+    id
+    clientId
+    name
+    description
+    developer
+    developerUrl
+    imageUrl
+}

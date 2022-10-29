@@ -1,0 +1,13 @@
+query ArchivedModelsSync($model_class: String!, $team_id: String!, $trash_option: TrashOptionType, $before: DateTime, $before_id: String, $last: Int) {
+    archivedModelsSync(modelClass: $model_class, teamId: $team_id, trashOption: $trash_option, before: $before, beforeId: $before_id, last: $last) {
+        ...ArchiveResponse
+    }
+}
+
+fragment ArchiveResponse on ArchiveResponse {
+    __typename
+    archive
+    totalCount
+    databaseVersion
+    includesDependencies
+}

@@ -1,0 +1,10 @@
+query Users($filter: UserFilter, $include_disabled: Boolean, $before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    users(filter: $filter, includeDisabled: $include_disabled, before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...UserConnection
+    }
+}
+
+fragment UserConnection on UserConnection {
+    __typename
+    
+}

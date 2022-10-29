@@ -1,0 +1,10 @@
+query Roadmaps($before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    roadmaps(before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...RoadmapConnection
+    }
+}
+
+fragment RoadmapConnection on RoadmapConnection {
+    __typename
+    
+}

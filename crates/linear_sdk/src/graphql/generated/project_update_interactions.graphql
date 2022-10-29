@@ -1,0 +1,10 @@
+query ProjectUpdateInteractions($before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    projectUpdateInteractions(before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...ProjectUpdateInteractionConnection
+    }
+}
+
+fragment ProjectUpdateInteractionConnection on ProjectUpdateInteractionConnection {
+    __typename
+    
+}

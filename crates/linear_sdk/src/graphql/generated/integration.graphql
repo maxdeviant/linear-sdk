@@ -1,0 +1,14 @@
+query Integration($id: String!) {
+    integration(id: $id) {
+        ...Integration
+    }
+}
+
+fragment Integration on Integration {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    service
+}

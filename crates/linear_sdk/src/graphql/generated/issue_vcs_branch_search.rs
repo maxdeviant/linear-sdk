@@ -1,10 +1,10 @@
 #![allow(clippy::all, warnings)]
-pub struct Issue;
-pub mod issue {
+pub struct IssueVcsBranchSearch;
+pub mod issue_vcs_branch_search {
     #![allow(dead_code)]
     use std::result::Result;
-    pub const OPERATION_NAME: &str = "Issue";
-    pub const QUERY : & str = "query Issue($id: String!) {\n    issue(id: $id) {\n        ...Issue\n    }\n}\n\nfragment Issue on Issue {\n    __typename\n    id\n    createdAt\n    updatedAt\n    archivedAt\n    number\n    title\n    description\n    priority\n    estimate\n    boardOrder\n    sortOrder\n    startedAt\n    completedAt\n    triagedAt\n    canceledAt\n    autoClosedAt\n    autoArchivedAt\n    dueDate\n    trashed\n    snoozedUntilAt\n    previousIdentifiers\n    subIssueSortOrder\n    priorityLabel\n    identifier\n    url\n    branchName\n    customerTicketCount\n}" ;
+    pub const OPERATION_NAME: &str = "IssueVcsBranchSearch";
+    pub const QUERY : & str = "query IssueVcsBranchSearch($branch_name: String!) {\n    issueVcsBranchSearch(branchName: $branch_name) {\n        ...Issue\n    }\n}\n\nfragment Issue on Issue {\n    __typename\n    id\n    createdAt\n    updatedAt\n    archivedAt\n    number\n    title\n    description\n    priority\n    estimate\n    boardOrder\n    sortOrder\n    startedAt\n    completedAt\n    triagedAt\n    canceledAt\n    autoClosedAt\n    autoArchivedAt\n    dueDate\n    trashed\n    snoozedUntilAt\n    previousIdentifiers\n    subIssueSortOrder\n    priorityLabel\n    identifier\n    url\n    branchName\n    customerTicketCount\n}" ;
     use super::*;
     use serde::{Deserialize, Serialize};
     #[allow(dead_code)]
@@ -19,7 +19,7 @@ pub mod issue {
     type DateTime = crate::graphql::custom_scalars::DateTime;
     #[derive(Serialize)]
     pub struct Variables {
-        pub id: String,
+        pub branch_name: String,
     }
     impl Variables {}
     #[derive(Deserialize, Debug)]
@@ -73,18 +73,19 @@ pub mod issue {
     }
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {
-        pub issue: IssueIssue,
+        #[serde(rename = "issueVcsBranchSearch")]
+        pub issue_vcs_branch_search: Option<IssueVcsBranchSearchIssueVcsBranchSearch>,
     }
-    pub type IssueIssue = Issue;
+    pub type IssueVcsBranchSearchIssueVcsBranchSearch = Issue;
 }
-impl graphql_client::GraphQLQuery for Issue {
-    type Variables = issue::Variables;
-    type ResponseData = issue::ResponseData;
+impl graphql_client::GraphQLQuery for IssueVcsBranchSearch {
+    type Variables = issue_vcs_branch_search::Variables;
+    type ResponseData = issue_vcs_branch_search::ResponseData;
     fn build_query(variables: Self::Variables) -> ::graphql_client::QueryBody<Self::Variables> {
         graphql_client::QueryBody {
             variables,
-            query: issue::QUERY,
-            operation_name: issue::OPERATION_NAME,
+            query: issue_vcs_branch_search::QUERY,
+            operation_name: issue_vcs_branch_search::OPERATION_NAME,
         }
     }
 }

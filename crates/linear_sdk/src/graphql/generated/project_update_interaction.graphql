@@ -1,0 +1,14 @@
+query ProjectUpdateInteraction($id: String!) {
+    projectUpdateInteraction(id: $id) {
+        ...ProjectUpdateInteraction
+    }
+}
+
+fragment ProjectUpdateInteraction on ProjectUpdateInteraction {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    readAt
+}

@@ -1,0 +1,17 @@
+query OrganizationInvite($id: String!) {
+    organizationInvite(id: $id) {
+        ...OrganizationInvite
+    }
+}
+
+fragment OrganizationInvite on OrganizationInvite {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    email
+    external
+    acceptedAt
+    expiresAt
+}

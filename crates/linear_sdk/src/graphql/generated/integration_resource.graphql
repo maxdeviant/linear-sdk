@@ -1,0 +1,15 @@
+query IntegrationResource($id: String!) {
+    integrationResource(id: $id) {
+        ...IntegrationResource
+    }
+}
+
+fragment IntegrationResource on IntegrationResource {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    resourceType
+    resourceId
+}

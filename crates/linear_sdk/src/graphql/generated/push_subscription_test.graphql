@@ -1,0 +1,10 @@
+query PushSubscriptionTest {
+    pushSubscriptionTest {
+        ...PushSubscriptionTestPayload
+    }
+}
+
+fragment PushSubscriptionTestPayload on PushSubscriptionTestPayload {
+    __typename
+    success
+}

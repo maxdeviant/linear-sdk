@@ -1,0 +1,15 @@
+query AuthorizedApplications {
+    authorizedApplications {
+        ...AuthorizedApplication
+    }
+}
+
+fragment AuthorizedApplication on AuthorizedApplication {
+    __typename
+    name
+    imageUrl
+    scope
+    appId
+    clientId
+    webhooksEnabled
+}

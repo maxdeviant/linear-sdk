@@ -1,0 +1,15 @@
+query TeamMembership($id: String!) {
+    teamMembership(id: $id) {
+        ...TeamMembership
+    }
+}
+
+fragment TeamMembership on TeamMembership {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    owner
+    sortOrder
+}

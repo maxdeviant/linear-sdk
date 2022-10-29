@@ -1,0 +1,19 @@
+query Webhook($id: String!) {
+    webhook(id: $id) {
+        ...Webhook
+    }
+}
+
+fragment Webhook on Webhook {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    label
+    url
+    enabled
+    allPublicTeams
+    secret
+    resourceTypes
+}

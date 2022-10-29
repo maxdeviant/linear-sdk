@@ -1,0 +1,21 @@
+query IntegrationsSettings($id: String!) {
+    integrationsSettings(id: $id) {
+        ...IntegrationsSettings
+    }
+}
+
+fragment IntegrationsSettings on IntegrationsSettings {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    slackIssueCreated
+    slackIssueNewComment
+    slackIssueStatusChangedDone
+    slackIssueStatusChangedAll
+    slackProjectUpdateCreated
+    slackProjectUpdateCreatedToTeam
+    slackProjectUpdateCreatedToMilestone
+    slackProjectUpdateCreatedToWorkspace
+}

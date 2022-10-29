@@ -1,0 +1,17 @@
+query Template($id: String!) {
+    template(id: $id) {
+        ...Template
+    }
+}
+
+fragment Template on Template {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    type
+    name
+    description
+    templateData
+}

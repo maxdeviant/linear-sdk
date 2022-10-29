@@ -1,0 +1,11 @@
+query RateLimitStatus {
+    rateLimitStatus {
+        ...RateLimitPayload
+    }
+}
+
+fragment RateLimitPayload on RateLimitPayload {
+    __typename
+    identifier
+    kind
+}

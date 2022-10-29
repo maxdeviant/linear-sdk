@@ -1,0 +1,15 @@
+query ProjectLink($id: String!) {
+    projectLink(id: $id) {
+        ...ProjectLink
+    }
+}
+
+fragment ProjectLink on ProjectLink {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    url
+    label
+}

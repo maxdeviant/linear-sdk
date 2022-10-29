@@ -1,0 +1,16 @@
+query IssueLabel($id: String!) {
+    issueLabel(id: $id) {
+        ...IssueLabel
+    }
+}
+
+fragment IssueLabel on IssueLabel {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    description
+    color
+}

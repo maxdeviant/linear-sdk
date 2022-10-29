@@ -1,0 +1,10 @@
+query IntegrationTemplates($before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    integrationTemplates(before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...IntegrationTemplateConnection
+    }
+}
+
+fragment IntegrationTemplateConnection on IntegrationTemplateConnection {
+    __typename
+    
+}

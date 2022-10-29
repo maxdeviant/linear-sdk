@@ -1,0 +1,17 @@
+query Templates {
+    templates {
+        ...Template
+    }
+}
+
+fragment Template on Template {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    type
+    name
+    description
+    templateData
+}

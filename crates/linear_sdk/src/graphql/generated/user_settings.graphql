@@ -1,0 +1,15 @@
+query UserSettings {
+    userSettings {
+        ...UserSettings
+    }
+}
+
+fragment UserSettings on UserSettings {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    notificationPreferences
+    unsubscribedFrom
+}

@@ -1,0 +1,10 @@
+query AuditEntries($filter: AuditEntryFilter, $before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    auditEntries(filter: $filter, before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...AuditEntryConnection
+    }
+}
+
+fragment AuditEntryConnection on AuditEntryConnection {
+    __typename
+    
+}

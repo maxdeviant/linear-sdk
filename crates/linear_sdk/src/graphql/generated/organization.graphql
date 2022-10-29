@@ -1,0 +1,28 @@
+query Organization {
+    organization {
+        ...Organization
+    }
+}
+
+fragment Organization on Organization {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    urlKey
+    logoUrl
+    periodUploadVolume
+    gitBranchFormat
+    gitLinkbackMessagesEnabled
+    gitPublicLinkbackMessagesEnabled
+    roadmapEnabled
+    projectUpdateRemindersHour
+    samlEnabled
+    scimEnabled
+    allowedAuthServices
+    deletionRequestedAt
+    userCount
+    createdIssueCount
+}

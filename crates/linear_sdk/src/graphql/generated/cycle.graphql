@@ -1,0 +1,26 @@
+query Cycle($id: String!) {
+    cycle(id: $id) {
+        ...Cycle
+    }
+}
+
+fragment Cycle on Cycle {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    number
+    name
+    description
+    startsAt
+    endsAt
+    completedAt
+    autoArchivedAt
+    issueCountHistory
+    completedIssueCountHistory
+    scopeHistory
+    completedScopeHistory
+    inProgressScopeHistory
+    progress
+}

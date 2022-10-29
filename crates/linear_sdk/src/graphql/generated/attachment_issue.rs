@@ -1,10 +1,10 @@
 #![allow(clippy::all, warnings)]
-pub struct Issue;
-pub mod issue {
+pub struct AttachmentIssue;
+pub mod attachment_issue {
     #![allow(dead_code)]
     use std::result::Result;
-    pub const OPERATION_NAME: &str = "Issue";
-    pub const QUERY : & str = "query Issue($id: String!) {\n    issue(id: $id) {\n        ...Issue\n    }\n}\n\nfragment Issue on Issue {\n    __typename\n    id\n    createdAt\n    updatedAt\n    archivedAt\n    number\n    title\n    description\n    priority\n    estimate\n    boardOrder\n    sortOrder\n    startedAt\n    completedAt\n    triagedAt\n    canceledAt\n    autoClosedAt\n    autoArchivedAt\n    dueDate\n    trashed\n    snoozedUntilAt\n    previousIdentifiers\n    subIssueSortOrder\n    priorityLabel\n    identifier\n    url\n    branchName\n    customerTicketCount\n}" ;
+    pub const OPERATION_NAME: &str = "AttachmentIssue";
+    pub const QUERY : & str = "query AttachmentIssue($id: String!) {\n    attachmentIssue(id: $id) {\n        ...Issue\n    }\n}\n\nfragment Issue on Issue {\n    __typename\n    id\n    createdAt\n    updatedAt\n    archivedAt\n    number\n    title\n    description\n    priority\n    estimate\n    boardOrder\n    sortOrder\n    startedAt\n    completedAt\n    triagedAt\n    canceledAt\n    autoClosedAt\n    autoArchivedAt\n    dueDate\n    trashed\n    snoozedUntilAt\n    previousIdentifiers\n    subIssueSortOrder\n    priorityLabel\n    identifier\n    url\n    branchName\n    customerTicketCount\n}" ;
     use super::*;
     use serde::{Deserialize, Serialize};
     #[allow(dead_code)]
@@ -15,8 +15,8 @@ pub mod issue {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     #[derive(Serialize)]
     pub struct Variables {
         pub id: String,
@@ -73,18 +73,22 @@ pub mod issue {
     }
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {
-        pub issue: IssueIssue,
+        #[serde(rename = "attachmentIssue")]
+        #[deprecated(
+            note = "Will be removed in near future, please use `attachmentsForURL` to get attachments and their issues instead."
+        )]
+        pub attachment_issue: AttachmentIssueAttachmentIssue,
     }
-    pub type IssueIssue = Issue;
+    pub type AttachmentIssueAttachmentIssue = Issue;
 }
-impl graphql_client::GraphQLQuery for Issue {
-    type Variables = issue::Variables;
-    type ResponseData = issue::ResponseData;
+impl graphql_client::GraphQLQuery for AttachmentIssue {
+    type Variables = attachment_issue::Variables;
+    type ResponseData = attachment_issue::ResponseData;
     fn build_query(variables: Self::Variables) -> ::graphql_client::QueryBody<Self::Variables> {
         graphql_client::QueryBody {
             variables,
-            query: issue::QUERY,
-            operation_name: issue::OPERATION_NAME,
+            query: attachment_issue::QUERY,
+            operation_name: attachment_issue::OPERATION_NAME,
         }
     }
 }

@@ -1,0 +1,17 @@
+query Milestone($id: String!) {
+    milestone(id: $id) {
+        ...Milestone
+    }
+}
+
+fragment Milestone on Milestone {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    sortOrder
+    description
+    targetDate
+}

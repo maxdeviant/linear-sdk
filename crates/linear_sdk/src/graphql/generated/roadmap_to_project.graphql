@@ -1,0 +1,14 @@
+query RoadmapToProject($id: String!) {
+    roadmapToProject(id: $id) {
+        ...RoadmapToProject
+    }
+}
+
+fragment RoadmapToProject on RoadmapToProject {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    sortOrder
+}

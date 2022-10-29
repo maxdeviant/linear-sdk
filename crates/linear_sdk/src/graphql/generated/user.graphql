@@ -1,0 +1,32 @@
+query User($id: String!) {
+    user(id: $id) {
+        ...User
+    }
+}
+
+fragment User on User {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    displayName
+    email
+    avatarUrl
+    disableReason
+    inviteHash
+    calendarHash
+    description
+    statusEmoji
+    statusLabel
+    statusUntilAt
+    timezone
+    lastSeen
+    guest
+    active
+    url
+    createdIssueCount
+    isMe
+    admin
+}

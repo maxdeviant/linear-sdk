@@ -1,0 +1,11 @@
+query AuditEntryTypes {
+    auditEntryTypes {
+        ...AuditEntryType
+    }
+}
+
+fragment AuditEntryType on AuditEntryType {
+    __typename
+    type
+    description
+}

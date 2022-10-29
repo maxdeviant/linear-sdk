@@ -1,0 +1,10 @@
+query DependentModelSync($include_dependent: Boolean, $identifier: String!, $model_class: String!) {
+    dependentModelSync(includeDependent: $include_dependent, identifier: $identifier, modelClass: $model_class) {
+        ...DependencyResponse
+    }
+}
+
+fragment DependencyResponse on DependencyResponse {
+    __typename
+    dependencies
+}

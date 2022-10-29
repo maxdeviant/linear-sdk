@@ -1,0 +1,13 @@
+query ArchivedModelSync($identifier: String!, $model_class: String!) {
+    archivedModelSync(identifier: $identifier, modelClass: $model_class) {
+        ...ArchiveResponse
+    }
+}
+
+fragment ArchiveResponse on ArchiveResponse {
+    __typename
+    archive
+    totalCount
+    databaseVersion
+    includesDependencies
+}

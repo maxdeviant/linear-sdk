@@ -1,0 +1,16 @@
+query Emoji($id: String!) {
+    emoji(id: $id) {
+        ...Emoji
+    }
+}
+
+fragment Emoji on Emoji {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    url
+    source
+}

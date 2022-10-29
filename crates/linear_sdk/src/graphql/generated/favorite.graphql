@@ -1,0 +1,17 @@
+query Favorite($id: String!) {
+    favorite(id: $id) {
+        ...Favorite
+    }
+}
+
+fragment Favorite on Favorite {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    type
+    folderName
+    predefinedViewType
+    sortOrder
+}

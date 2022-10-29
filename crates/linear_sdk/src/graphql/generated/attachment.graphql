@@ -1,0 +1,20 @@
+query Attachment($id: String!) {
+    attachment(id: $id) {
+        ...Attachment
+    }
+}
+
+fragment Attachment on Attachment {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    title
+    subtitle
+    url
+    metadata
+    source
+    sourceType
+    groupBySource
+}

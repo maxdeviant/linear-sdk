@@ -1,0 +1,19 @@
+query Document($id: String!) {
+    document(id: $id) {
+        ...Document
+    }
+}
+
+fragment Document on Document {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    title
+    content
+    contentData
+    icon
+    color
+    slugId
+}

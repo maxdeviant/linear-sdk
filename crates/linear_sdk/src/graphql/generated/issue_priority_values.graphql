@@ -1,0 +1,11 @@
+query IssuePriorityValues {
+    issuePriorityValues {
+        ...IssuePriorityValue
+    }
+}
+
+fragment IssuePriorityValue on IssuePriorityValue {
+    __typename
+    priority
+    label
+}

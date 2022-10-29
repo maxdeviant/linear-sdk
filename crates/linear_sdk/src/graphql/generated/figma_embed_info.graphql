@@ -1,0 +1,10 @@
+query FigmaEmbedInfo($node_id: String, $file_id: String!) {
+    figmaEmbedInfo(nodeId: $node_id, fileId: $file_id) {
+        ...FigmaEmbedPayload
+    }
+}
+
+fragment FigmaEmbedPayload on FigmaEmbedPayload {
+    __typename
+    success
+}

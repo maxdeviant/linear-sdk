@@ -1,0 +1,10 @@
+query Emojis($before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    emojis(before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...EmojiConnection
+    }
+}
+
+fragment EmojiConnection on EmojiConnection {
+    __typename
+    
+}

@@ -1,0 +1,16 @@
+query ApplicationInfoByIds($ids: [String!]!) {
+    applicationInfoByIds(ids: $ids) {
+        ...Application
+    }
+}
+
+fragment Application on Application {
+    __typename
+    id
+    clientId
+    name
+    description
+    developer
+    developerUrl
+    imageUrl
+}

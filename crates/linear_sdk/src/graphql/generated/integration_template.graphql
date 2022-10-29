@@ -1,0 +1,13 @@
+query IntegrationTemplate($id: String!) {
+    integrationTemplate(id: $id) {
+        ...IntegrationTemplate
+    }
+}
+
+fragment IntegrationTemplate on IntegrationTemplate {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+}

@@ -1,0 +1,14 @@
+query SyncBootstrap($only_models: [String!], $sync_groups: [String!]) {
+    syncBootstrap(onlyModels: $only_models, syncGroups: $sync_groups) {
+        ...SyncResponse
+    }
+}
+
+fragment SyncResponse on SyncResponse {
+    __typename
+    state
+    delta
+    subscribedSyncGroups
+    lastSyncId
+    databaseVersion
+}

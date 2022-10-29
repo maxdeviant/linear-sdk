@@ -1,0 +1,17 @@
+query Initiative($id: String!) {
+    initiative(id: $id) {
+        ...Initiative
+    }
+}
+
+fragment Initiative on Initiative {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    sortOrder
+    description
+    targetDate
+}

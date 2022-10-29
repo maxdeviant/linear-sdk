@@ -1,0 +1,10 @@
+query SyncEntityCount {
+    syncEntityCount {
+        ...EntityCountResponse
+    }
+}
+
+fragment EntityCountResponse on EntityCountResponse {
+    __typename
+    counts
+}

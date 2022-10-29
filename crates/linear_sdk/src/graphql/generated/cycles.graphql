@@ -1,0 +1,10 @@
+query Cycles($filter: CycleFilter, $before: String, $after: String, $first: Int, $last: Int, $include_archived: Boolean, $order_by: PaginationOrderBy) {
+    cycles(filter: $filter, before: $before, after: $after, first: $first, last: $last, includeArchived: $include_archived, orderBy: $order_by) {
+        ...CycleConnection
+    }
+}
+
+fragment CycleConnection on CycleConnection {
+    __typename
+    
+}

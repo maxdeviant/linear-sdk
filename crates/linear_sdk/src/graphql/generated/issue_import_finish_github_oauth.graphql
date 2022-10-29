@@ -1,0 +1,10 @@
+query IssueImportFinishGithubOauth($code: String!) {
+    issueImportFinishGithubOAuth(code: $code) {
+        ...GithubOAuthTokenPayload
+    }
+}
+
+fragment GithubOAuthTokenPayload on GithubOAuthTokenPayload {
+    __typename
+    token
+}

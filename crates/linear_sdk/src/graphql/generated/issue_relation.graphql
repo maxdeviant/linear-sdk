@@ -1,0 +1,14 @@
+query IssueRelation($id: String!) {
+    issueRelation(id: $id) {
+        ...IssueRelation
+    }
+}
+
+fragment IssueRelation on IssueRelation {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    type
+}

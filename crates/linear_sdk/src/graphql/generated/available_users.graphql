@@ -1,0 +1,14 @@
+query AvailableUsers {
+    availableUsers {
+        ...AuthResolverResponse
+    }
+}
+
+fragment AuthResolverResponse on AuthResolverResponse {
+    __typename
+    id
+    token
+    email
+    allowDomainAccess
+    lastUsedOrganizationId
+}

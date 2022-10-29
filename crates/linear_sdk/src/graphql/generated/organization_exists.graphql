@@ -1,0 +1,11 @@
+query OrganizationExists($url_key: String!) {
+    organizationExists(urlKey: $url_key) {
+        ...OrganizationExistsPayload
+    }
+}
+
+fragment OrganizationExistsPayload on OrganizationExistsPayload {
+    __typename
+    success
+    exists
+}

@@ -1,0 +1,37 @@
+query Project($id: String!) {
+    project(id: $id) {
+        ...Project
+    }
+}
+
+fragment Project on Project {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    name
+    description
+    slugId
+    icon
+    color
+    state
+    projectUpdateRemindersPausedUntilAt
+    startDate
+    targetDate
+    startedAt
+    completedAt
+    canceledAt
+    autoArchivedAt
+    sortOrder
+    issueCountHistory
+    completedIssueCountHistory
+    scopeHistory
+    completedScopeHistory
+    inProgressScopeHistory
+    slackNewIssue
+    slackIssueComments
+    slackIssueStatuses
+    url
+    progress
+}

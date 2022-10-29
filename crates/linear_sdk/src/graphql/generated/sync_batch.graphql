@@ -1,0 +1,10 @@
+query SyncBatch($requests: [BatchRequest!]!) {
+    syncBatch(requests: $requests) {
+        ...SyncBatchResponse
+    }
+}
+
+fragment SyncBatchResponse on SyncBatchResponse {
+    __typename
+    models
+}

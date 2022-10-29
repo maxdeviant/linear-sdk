@@ -1,0 +1,17 @@
+query Comment($id: String!) {
+    comment(id: $id) {
+        ...Comment
+    }
+}
+
+fragment Comment on Comment {
+    __typename
+    id
+    createdAt
+    updatedAt
+    archivedAt
+    body
+    editedAt
+    bodyData
+    url
+}

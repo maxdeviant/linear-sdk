@@ -2,6 +2,7 @@ mod instrospection_schema;
 
 use std::fs::File;
 use std::io::{BufReader, Write};
+use std::process::Command;
 
 use heck::{ToPascalCase, ToSnakeCase};
 use instrospection_schema::{GraphQlTypeKind, GraphQlTypeRef, IntrospectionQuery};
@@ -54,6 +55,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .expect("No Query type found");
 
     let query_fields = query_type.fields.as_ref().expect("Query has no fields");
+
+    let mut emitted_graphql_modules: Vec<String> = Vec::new();
 
     for field in query_fields {
         let field_type_name = resolve_type_name(&field.ty);
@@ -113,6 +116,7 @@ query {query_name}{args_list} {{
 }}
 
 fragment {fragment_name} on {fragment_name} {{
+    __typename
     {fragment_fields}
 }}
         "#,
@@ -132,13 +136,46 @@ fragment {fragment_name} on {fragment_name} {{
             fragment_fields = fragment_field_names.join("\n    ")
         );
 
+        let rust_module_name = sanitize_name(field.name.clone()).to_snake_case();
+
         let mut graphql_file = File::create(format!(
-            "crates/linear_sdk/src/graphql/{}.graphql",
-            sanitize_name(field.name.clone()).to_snake_case()
+            "crates/linear_sdk/src/graphql/generated/{}.graphql",
+            rust_module_name
         ))?;
 
         graphql_file.write_all(contents.trim().as_bytes())?;
+
+        emitted_graphql_modules.push(rust_module_name);
     }
+
+    emitted_graphql_modules.sort_unstable();
+
+    for emitted_graphql_module in &emitted_graphql_modules {
+        let mut generate_command = Command::new("graphql-client");
+
+        generate_command
+            .arg("generate")
+            .arg("--schema-path=schema.json")
+            .arg("--custom-scalars-module=crate::graphql::custom_scalars")
+            .arg("--response-derives=Debug")
+            .arg(format!(
+                "crates/linear_sdk/src/graphql/generated/{}.graphql",
+                emitted_graphql_module
+            ));
+
+        generate_command.status()?;
+    }
+
+    let mut generated_module_file = File::create("crates/linear_sdk/src/graphql/generated.rs")?;
+
+    generated_module_file.write_all(
+        emitted_graphql_modules
+            .into_iter()
+            .map(|module_name| format!("pub mod {};", module_name))
+            .collect::<Vec<_>>()
+            .join("\n")
+            .as_bytes(),
+    )?;
 
     Ok(())
 }

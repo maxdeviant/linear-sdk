@@ -150,7 +150,6 @@ fragment {fragment_name} on {fragment_name} {{
 
         let generated_client_impl = format!(
             r#"
-impl crate::LinearClient {{
     pub async fn {fn_name}(
         &self,
         variables: crate::graphql::{module_name}::Variables,
@@ -161,7 +160,6 @@ impl crate::LinearClient {{
 
         Ok(response_body.data.expect("No data"))
     }}
-}}
             "#,
             fn_name = sanitize_name(field.name.clone()).to_snake_case(),
             module_name = rust_module_name,
@@ -194,11 +192,12 @@ impl crate::LinearClient {{
     let mut generated_module_file = File::create("crates/linear_sdk/src/graphql/generated.rs")?;
 
     generated_module_file.write_all(
-        emitted_graphql_modules
+        (emitted_graphql_modules
             .iter()
             .map(|module_name| format!("pub mod {};", module_name))
             .collect::<Vec<_>>()
             .join("\n")
+            + "\n")
             .as_bytes(),
     )?;
 
@@ -225,7 +224,20 @@ mod generated;
 
     let mut generated_client_file = File::create("crates/linear_sdk/src/client_generated.rs")?;
 
-    generated_client_file.write_all(generated_client_impls.join("\n\n").as_bytes())?;
+    generated_client_file.write_all(
+        format!(
+            r#"
+impl crate::LinearClient {{
+    {impls}
+}}
+            "#,
+            impls = generated_client_impls.join("\n\n")
+        )
+        .trim()
+        .as_bytes(),
+    )?;
+
+    Command::new("cargo").arg("fmt").status()?;
 
     Ok(())
 }

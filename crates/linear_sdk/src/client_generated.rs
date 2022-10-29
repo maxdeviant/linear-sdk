@@ -9,9 +9,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn sync_entity_count(
         &self,
         variables: crate::graphql::sync_entity_count::Variables,
@@ -22,9 +20,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn sync_batch(
         &self,
         variables: crate::graphql::sync_batch::Variables,
@@ -35,9 +31,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn dependent_model_sync(
         &self,
         variables: crate::graphql::dependent_model_sync::Variables,
@@ -48,9 +42,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn archived_model_sync(
         &self,
         variables: crate::graphql::archived_model_sync::Variables,
@@ -61,9 +53,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn archived_models_sync(
         &self,
         variables: crate::graphql::archived_models_sync::Variables,
@@ -74,9 +64,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn api_keys(
         &self,
         variables: crate::graphql::api_keys::Variables,
@@ -87,9 +75,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn application_info(
         &self,
         variables: crate::graphql::application_info::Variables,
@@ -100,9 +86,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn application_info_by_ids(
         &self,
         variables: crate::graphql::application_info_by_ids::Variables,
@@ -113,9 +97,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn application_with_authorization(
         &self,
         variables: crate::graphql::application_with_authorization::Variables,
@@ -126,9 +108,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn authorized_applications(
         &self,
         variables: crate::graphql::authorized_applications::Variables,
@@ -139,22 +119,19 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn workspace_authorized_applications(
         &self,
         variables: crate::graphql::workspace_authorized_applications::Variables,
-    ) -> Result<crate::graphql::workspace_authorized_applications::ResponseData, reqwest::Error> {
+    ) -> Result<crate::graphql::workspace_authorized_applications::ResponseData, reqwest::Error>
+    {
         let response_body = self
             .post_graphql::<crate::graphql::WorkspaceAuthorizedApplications>(variables)
             .await?;
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn attachments(
         &self,
         variables: crate::graphql::attachments::Variables,
@@ -165,9 +142,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn attachment(
         &self,
         variables: crate::graphql::attachment::Variables,
@@ -178,9 +153,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn attachments_for_url(
         &self,
         variables: crate::graphql::attachments_for_url::Variables,
@@ -191,9 +164,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn attachment_issue(
         &self,
         variables: crate::graphql::attachment_issue::Variables,
@@ -204,9 +175,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn audit_entry_types(
         &self,
         variables: crate::graphql::audit_entry_types::Variables,
@@ -217,9 +186,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn audit_entries(
         &self,
         variables: crate::graphql::audit_entries::Variables,
@@ -230,9 +197,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn available_users(
         &self,
         variables: crate::graphql::available_users::Variables,
@@ -243,9 +208,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn sso_url_from_email(
         &self,
         variables: crate::graphql::sso_url_from_email::Variables,
@@ -256,9 +219,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn comments(
         &self,
         variables: crate::graphql::comments::Variables,
@@ -269,9 +230,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn comment(
         &self,
         variables: crate::graphql::comment::Variables,
@@ -282,9 +241,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn custom_views(
         &self,
         variables: crate::graphql::custom_views::Variables,
@@ -295,9 +252,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn custom_view(
         &self,
         variables: crate::graphql::custom_view::Variables,
@@ -308,9 +263,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn cycles(
         &self,
         variables: crate::graphql::cycles::Variables,
@@ -321,9 +274,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn cycle(
         &self,
         variables: crate::graphql::cycle::Variables,
@@ -334,9 +285,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn documents(
         &self,
         variables: crate::graphql::documents::Variables,
@@ -347,9 +296,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn document(
         &self,
         variables: crate::graphql::document::Variables,
@@ -360,9 +307,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn emojis(
         &self,
         variables: crate::graphql::emojis::Variables,
@@ -373,9 +318,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn emoji(
         &self,
         variables: crate::graphql::emoji::Variables,
@@ -386,9 +329,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn favorites(
         &self,
         variables: crate::graphql::favorites::Variables,
@@ -399,9 +340,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn favorite(
         &self,
         variables: crate::graphql::favorite::Variables,
@@ -412,9 +351,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn figma_embed_info(
         &self,
         variables: crate::graphql::figma_embed_info::Variables,
@@ -425,9 +362,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn initiatives(
         &self,
         variables: crate::graphql::initiatives::Variables,
@@ -438,9 +373,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn initiative(
         &self,
         variables: crate::graphql::initiative::Variables,
@@ -451,9 +384,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integrations(
         &self,
         variables: crate::graphql::integrations::Variables,
@@ -464,9 +395,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integration(
         &self,
         variables: crate::graphql::integration::Variables,
@@ -477,9 +406,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integration_resources(
         &self,
         variables: crate::graphql::integration_resources::Variables,
@@ -490,9 +417,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integration_resource(
         &self,
         variables: crate::graphql::integration_resource::Variables,
@@ -503,9 +428,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_updates(
         &self,
         variables: crate::graphql::project_updates::Variables,
@@ -516,9 +439,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integrations_settings(
         &self,
         variables: crate::graphql::integrations_settings::Variables,
@@ -529,9 +450,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integration_templates(
         &self,
         variables: crate::graphql::integration_templates::Variables,
@@ -542,9 +461,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn integration_template(
         &self,
         variables: crate::graphql::integration_template::Variables,
@@ -555,22 +472,19 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_import_finish_github_oauth(
         &self,
         variables: crate::graphql::issue_import_finish_github_oauth::Variables,
-    ) -> Result<crate::graphql::issue_import_finish_github_oauth::ResponseData, reqwest::Error> {
+    ) -> Result<crate::graphql::issue_import_finish_github_oauth::ResponseData, reqwest::Error>
+    {
         let response_body = self
             .post_graphql::<crate::graphql::IssueImportFinishGithubOauth>(variables)
             .await?;
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_labels(
         &self,
         variables: crate::graphql::issue_labels::Variables,
@@ -581,9 +495,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_label(
         &self,
         variables: crate::graphql::issue_label::Variables,
@@ -594,9 +506,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_relations(
         &self,
         variables: crate::graphql::issue_relations::Variables,
@@ -607,9 +517,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_relation(
         &self,
         variables: crate::graphql::issue_relation::Variables,
@@ -620,9 +528,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issues(
         &self,
         variables: crate::graphql::issues::Variables,
@@ -633,9 +539,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue(
         &self,
         variables: crate::graphql::issue::Variables,
@@ -646,9 +550,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_search(
         &self,
         variables: crate::graphql::issue_search::Variables,
@@ -659,9 +561,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_vcs_branch_search(
         &self,
         variables: crate::graphql::issue_vcs_branch_search::Variables,
@@ -672,9 +572,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn issue_priority_values(
         &self,
         variables: crate::graphql::issue_priority_values::Variables,
@@ -685,9 +583,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn milestones(
         &self,
         variables: crate::graphql::milestones::Variables,
@@ -698,9 +594,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn milestone(
         &self,
         variables: crate::graphql::milestone::Variables,
@@ -711,9 +605,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn notifications(
         &self,
         variables: crate::graphql::notifications::Variables,
@@ -724,9 +616,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn notification(
         &self,
         variables: crate::graphql::notification::Variables,
@@ -737,9 +627,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn notification_subscriptions(
         &self,
         variables: crate::graphql::notification_subscriptions::Variables,
@@ -750,9 +638,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn notification_subscription(
         &self,
         variables: crate::graphql::notification_subscription::Variables,
@@ -763,22 +649,19 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization_domain_claim_request(
         &self,
         variables: crate::graphql::organization_domain_claim_request::Variables,
-    ) -> Result<crate::graphql::organization_domain_claim_request::ResponseData, reqwest::Error> {
+    ) -> Result<crate::graphql::organization_domain_claim_request::ResponseData, reqwest::Error>
+    {
         let response_body = self
             .post_graphql::<crate::graphql::OrganizationDomainClaimRequest>(variables)
             .await?;
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization_invites(
         &self,
         variables: crate::graphql::organization_invites::Variables,
@@ -789,9 +672,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization_invite(
         &self,
         variables: crate::graphql::organization_invite::Variables,
@@ -802,9 +683,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization_invite_details(
         &self,
         variables: crate::graphql::organization_invite_details::Variables,
@@ -815,9 +694,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization(
         &self,
         variables: crate::graphql::organization::Variables,
@@ -828,9 +705,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn organization_exists(
         &self,
         variables: crate::graphql::organization_exists::Variables,
@@ -841,9 +716,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_links(
         &self,
         variables: crate::graphql::project_links::Variables,
@@ -854,9 +727,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_link(
         &self,
         variables: crate::graphql::project_link::Variables,
@@ -867,9 +738,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn projects(
         &self,
         variables: crate::graphql::projects::Variables,
@@ -880,9 +749,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project(
         &self,
         variables: crate::graphql::project::Variables,
@@ -893,9 +760,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_update_interactions(
         &self,
         variables: crate::graphql::project_update_interactions::Variables,
@@ -906,9 +771,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_update_interaction(
         &self,
         variables: crate::graphql::project_update_interaction::Variables,
@@ -919,9 +782,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn project_update(
         &self,
         variables: crate::graphql::project_update::Variables,
@@ -932,9 +793,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn push_subscription_test(
         &self,
         variables: crate::graphql::push_subscription_test::Variables,
@@ -945,9 +804,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn rate_limit_status(
         &self,
         variables: crate::graphql::rate_limit_status::Variables,
@@ -958,9 +815,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn roadmaps(
         &self,
         variables: crate::graphql::roadmaps::Variables,
@@ -971,9 +826,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn roadmap(
         &self,
         variables: crate::graphql::roadmap::Variables,
@@ -984,9 +837,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn roadmap_to_projects(
         &self,
         variables: crate::graphql::roadmap_to_projects::Variables,
@@ -997,9 +848,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn roadmap_to_project(
         &self,
         variables: crate::graphql::roadmap_to_project::Variables,
@@ -1010,9 +859,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn team_memberships(
         &self,
         variables: crate::graphql::team_memberships::Variables,
@@ -1023,9 +870,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn team_membership(
         &self,
         variables: crate::graphql::team_membership::Variables,
@@ -1036,9 +881,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn teams(
         &self,
         variables: crate::graphql::teams::Variables,
@@ -1049,9 +892,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn administrable_teams(
         &self,
         variables: crate::graphql::administrable_teams::Variables,
@@ -1062,22 +903,16 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn team(
         &self,
         variables: crate::graphql::team::Variables,
     ) -> Result<crate::graphql::team::ResponseData, reqwest::Error> {
-        let response_body = self
-            .post_graphql::<crate::graphql::Team>(variables)
-            .await?;
+        let response_body = self.post_graphql::<crate::graphql::Team>(variables).await?;
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn templates(
         &self,
         variables: crate::graphql::templates::Variables,
@@ -1088,9 +923,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn template(
         &self,
         variables: crate::graphql::template::Variables,
@@ -1101,9 +934,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn users(
         &self,
         variables: crate::graphql::users::Variables,
@@ -1114,22 +945,16 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn user(
         &self,
         variables: crate::graphql::user::Variables,
     ) -> Result<crate::graphql::user::ResponseData, reqwest::Error> {
-        let response_body = self
-            .post_graphql::<crate::graphql::User>(variables)
-            .await?;
+        let response_body = self.post_graphql::<crate::graphql::User>(variables).await?;
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn viewer(
         &self,
         variables: crate::graphql::viewer::Variables,
@@ -1140,9 +965,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn user_settings(
         &self,
         variables: crate::graphql::user_settings::Variables,
@@ -1153,9 +976,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn webhooks(
         &self,
         variables: crate::graphql::webhooks::Variables,
@@ -1166,9 +987,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn webhook(
         &self,
         variables: crate::graphql::webhook::Variables,
@@ -1179,9 +998,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn workflow_states(
         &self,
         variables: crate::graphql::workflow_states::Variables,
@@ -1192,9 +1009,7 @@ impl crate::LinearClient {
 
         Ok(response_body.data.expect("No data"))
     }
-}
 
-impl crate::LinearClient {
     pub async fn workflow_state(
         &self,
         variables: crate::graphql::workflow_state::Variables,

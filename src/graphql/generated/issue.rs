@@ -22,7 +22,7 @@ pub mod issue {
         pub id: String,
     }
     impl Variables {}
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct Issue {
         pub trashed: Option<Boolean>,
         pub url: String,
@@ -78,39 +78,39 @@ pub mod issue {
         pub snoozed_by: Option<IssueSnoozedBy>,
         pub state: IssueState,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueCycle {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueParent {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueProject {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueTeam {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueAssignee {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueCreator {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueSnoozedBy {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct IssueState {
         pub id: ID,
     }
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     pub struct ResponseData {
         pub issue: IssueIssue,
     }

@@ -20,6 +20,19 @@ fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {
     }
 }
 
+fn render_type_name(ty: &GraphQlTypeRef) -> String {
+    match ty {
+        GraphQlTypeRef::Scalar { name }
+        | GraphQlTypeRef::Object { name }
+        | GraphQlTypeRef::Interface { name }
+        | GraphQlTypeRef::Union { name }
+        | GraphQlTypeRef::Enum { name }
+        | GraphQlTypeRef::InputObject { name } => name.to_owned(),
+        GraphQlTypeRef::NonNull(boxed) => format!("{}!", render_type_name(&boxed.of_type)),
+        GraphQlTypeRef::List(boxed) => format!("[{}]", render_type_name(&boxed.of_type)),
+    }
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let schema_file = File::open("schema.json")?;
     let buf_reader = BufReader::new(schema_file);
@@ -49,7 +62,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 format!(
                     "${}: {}",
                     arg.name.to_snake_case(),
-                    resolve_type_name(&arg.ty)
+                    render_type_name(&arg.ty)
                 )
             })
             .collect::<Vec<_>>()

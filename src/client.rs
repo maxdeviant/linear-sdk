@@ -1,3 +1,4 @@
+use graphql_client::GraphQLQuery;
 use url::{ParseError, Url};
 
 use crate::ApiKey;
@@ -26,6 +27,36 @@ impl LinearClient {
 
     pub(crate) fn key(&self) -> &ApiKey {
         &self.key
+    }
+
+    pub(crate) async fn post_graphql<Q: GraphQLQuery>(
+        &self,
+        variables: Q::Variables,
+    ) -> Result<graphql_client::Response<Q::ResponseData>, reqwest::Error> {
+        let body = Q::build_query(variables);
+
+        let response = self
+            .client
+            .post(self.base_url().clone())
+            .bearer_auth(self.key())
+            .json(&body)
+            .send()
+            .await?;
+
+        response.json().await
+    }
+
+    pub async fn issue(
+        &self,
+        id: &str,
+    ) -> Result<crate::graphql::issue::issue::ResponseData, reqwest::Error> {
+        let response_body = self
+            .post_graphql::<crate::graphql::issue::Issue>(crate::graphql::issue::issue::Variables {
+                id: id.to_string(),
+            })
+            .await?;
+
+        Ok(response_body.data.expect("No data"))
     }
 }
 

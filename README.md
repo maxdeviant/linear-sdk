@@ -1,2 +1,3 @@
-# linear-sdk
+# linear_sdk
+
 A Linear SDK for Rust

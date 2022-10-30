@@ -98,6 +98,16 @@ pub struct GraphQlInterfaceType {
 pub struct GraphQlEnumType {
     pub name: String,
     pub description: Option<String>,
+    pub enum_values: Vec<EnumValue>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EnumValue {
+    pub name: String,
+    pub description: Option<String>,
+    pub is_deprecated: bool,
+    pub deprecation_reason: Option<String>,
 }
 
 /// A GraphQL field.

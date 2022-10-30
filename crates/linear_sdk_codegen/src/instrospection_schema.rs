@@ -1,3 +1,10 @@
+//! The representation of the GraphQL introspection schema.
+//!
+//! This is based off of the following files used by `graphql-client`:
+//!
+//! - [`introspection_schema.graphql`](https://github.com/graphql-rust/graphql-client/blob/0776197ad7cfde2c658490e7c7e627a21ed622cb/graphql_client_cli/src/graphql/introspection_schema.graphql)
+//! - [`introspection_query.graphql`](https://github.com/graphql-rust/graphql-client/blob/0776197ad7cfde2c658490e7c7e627a21ed622cb/graphql_client_cli/src/graphql/introspection_query.graphql)
+
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]

@@ -7,13 +7,17 @@
 
 use serde::Deserialize;
 
+/// The response from the GraphQL introspection call.
 #[derive(Debug, Deserialize)]
-pub struct IntrospectionQuery {
-    pub data: IntrospectionQueryData,
+pub struct IntrospectionResponse {
+    /// The introspection response data.
+    pub data: IntrospectionQuery,
 }
 
+/// A GraphQL introspection query.
 #[derive(Debug, Deserialize)]
-pub struct IntrospectionQueryData {
+pub struct IntrospectionQuery {
+    /// The introspection schema.
     #[serde(rename = "__schema")]
     pub schema: IntrospectionSchema,
 }
@@ -59,17 +63,27 @@ pub enum GraphQlTypeKind {
     NonNull,
 }
 
+/// A GraphQL field.
 #[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Field {
+    /// The name of the field.
     pub name: String,
+
+    /// The description of the field.
     pub description: Option<String>,
 
+    /// The type of the field.
     #[serde(rename = "type")]
     pub ty: GraphQlTypeRef,
 
+    /// The arguments to the field.
     pub args: Vec<InputValue>,
+
+    /// Whether the field is deprecated.
     pub is_deprecated: bool,
+
+    /// The reason the field is deprecated.
     pub deprecation_reason: Option<String>,
 }
 

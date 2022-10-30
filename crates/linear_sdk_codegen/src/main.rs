@@ -1,4 +1,4 @@
-mod instrospection_schema;
+mod introspection_schema;
 
 use std::fs::File;
 use std::io::{BufReader, Write};
@@ -6,8 +6,8 @@ use std::process::Command;
 
 use heck::{ToPascalCase, ToSnakeCase};
 
-use instrospection_schema::{
-    Field, GraphQlTypeKind, GraphQlTypeRef, IntrospectionQuery, IntrospectionSchema,
+use introspection_schema::{
+    Field, GraphQlTypeKind, GraphQlTypeRef, IntrospectionResponse, IntrospectionSchema,
 };
 
 fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {
@@ -76,7 +76,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let schema_file = File::open("schema.json")?;
     let buf_reader = BufReader::new(schema_file);
 
-    let schema_query: IntrospectionQuery = serde_json::from_reader(buf_reader)?;
+    let schema_query: IntrospectionResponse = serde_json::from_reader(buf_reader)?;
 
     let schema = schema_query.data.schema;
 

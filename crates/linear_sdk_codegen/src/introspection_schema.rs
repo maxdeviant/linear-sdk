@@ -41,13 +41,63 @@ pub struct MutationType {
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(tag = "kind", rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum GraphQlFullType {
+    Scalar(GraphQlScalarType),
+    Object(GraphQlObjectType),
+    Interface(GraphQlInterfaceType),
+    Union,
+    Enum(GraphQlEnumType),
+    InputObject,
+    List,
+    NonNull,
+}
+
+impl GraphQlFullType {
+    pub fn name(&self) -> Option<String> {
+        match self {
+            Self::Scalar(scalar) => Some(scalar.name.clone()),
+            Self::Object(object) => Some(object.name.clone()),
+            Self::Interface(interface) => Some(interface.name.clone()),
+            Self::Union => None,
+            Self::Enum(r#enum) => Some(r#enum.name.clone()),
+            Self::InputObject => None,
+            Self::List => None,
+            Self::NonNull => None,
+        }
+    }
+}
+
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct GraphQlFullType {
-    pub kind: GraphQlTypeKind,
-    pub name: Option<String>,
+pub struct GraphQlScalarType {
+    pub name: String,
     pub description: Option<String>,
-    pub fields: Option<Vec<Field>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GraphQlObjectType {
+    pub name: String,
+    pub description: Option<String>,
+    pub fields: Vec<Field>,
     pub of_type: Option<GraphQlTypeRef>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GraphQlInterfaceType {
+    pub name: String,
+    pub description: Option<String>,
+    pub fields: Vec<Field>,
+    pub possible_types: Vec<GraphQlTypeRef>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GraphQlEnumType {
+    pub name: String,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Deserialize, PartialEq, Eq)]

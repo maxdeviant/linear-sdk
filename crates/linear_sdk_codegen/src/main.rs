@@ -7,7 +7,8 @@ use std::process::Command;
 use heck::{ToPascalCase, ToSnakeCase};
 
 use introspection_schema::{
-    Field, GraphQlTypeKind, GraphQlTypeRef, IntrospectionResponse, IntrospectionSchema,
+    Field, GraphQlFullType, GraphQlObjectType, GraphQlTypeKind, GraphQlTypeRef,
+    IntrospectionResponse, IntrospectionSchema,
 };
 
 fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {
@@ -61,13 +62,14 @@ impl TryFrom<&IntrospectionSchema> for QueryType {
         let query_type = schema
             .types
             .iter()
-            .find(|ty| ty.name.as_ref() == Some(&query_name))
+            .find_map(|ty| match ty {
+                GraphQlFullType::Object(object) if &object.name == query_name => Some(object),
+                _ => None,
+            })
             .ok_or("No Query type found")?;
 
-        let query_fields = query_type.fields.as_ref().ok_or("Query has no fields")?;
-
         Ok(Self {
-            fields: query_fields.to_vec(),
+            fields: query_type.fields.to_vec(),
         })
     }
 }
@@ -111,24 +113,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let field_type = schema
             .types
             .iter()
-            .find(|ty| ty.name.as_ref() == Some(&field_type_name))
+            .find(|ty| ty.name().as_ref() == Some(&field_type_name))
             .expect(&format!("No type found for field '{}'", field_type_name));
 
         let mut fragment_field_names = Vec::new();
-        if let Some(sub_fields) = &field_type.fields {
-            for sub_field in sub_fields {
+        if let GraphQlFullType::Object(object) = &field_type {
+            for sub_field in &object.fields {
                 let sub_field_type_name = resolve_type_name(&sub_field.ty);
 
                 let sub_field_type = schema
                     .types
                     .iter()
-                    .find(|ty| ty.name.as_ref() == Some(&sub_field_type_name))
+                    .find(|ty| ty.name().as_ref() == Some(&sub_field_type_name))
                     .expect(&format!(
                         "No type found for sub field '{}'",
                         sub_field_type_name
                     ));
 
-                if sub_field_type.kind == GraphQlTypeKind::Scalar {
+                if let GraphQlFullType::Scalar(_) = sub_field_type {
                     fragment_field_names.push(sub_field.name.clone());
                 }
             }

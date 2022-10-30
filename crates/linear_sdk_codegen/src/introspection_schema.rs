@@ -100,19 +100,6 @@ pub struct GraphQlEnumType {
     pub description: Option<String>,
 }
 
-#[derive(Debug, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum GraphQlTypeKind {
-    Scalar,
-    Object,
-    Interface,
-    Union,
-    Enum,
-    InputObject,
-    List,
-    NonNull,
-}
-
 /// A GraphQL field.
 #[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]

@@ -7,8 +7,7 @@ use std::process::Command;
 use heck::{ToPascalCase, ToSnakeCase};
 
 use introspection_schema::{
-    Field, GraphQlFullType, GraphQlObjectType, GraphQlTypeKind, GraphQlTypeRef,
-    IntrospectionResponse, IntrospectionSchema,
+    Field, GraphQlFullType, GraphQlTypeRef, IntrospectionResponse, IntrospectionSchema,
 };
 
 fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {

@@ -48,7 +48,7 @@ pub enum GraphQlFullType {
     Interface(GraphQlInterfaceType),
     Union,
     Enum(GraphQlEnumType),
-    InputObject,
+    InputObject(GraphQlInputObjectType),
     List,
     NonNull,
 }
@@ -61,7 +61,7 @@ impl GraphQlFullType {
             Self::Interface(interface) => Some(interface.name.clone()),
             Self::Union => None,
             Self::Enum(r#enum) => Some(r#enum.name.clone()),
-            Self::InputObject => None,
+            Self::InputObject(input_object) => Some(input_object.name.clone()),
             Self::List => None,
             Self::NonNull => None,
         }
@@ -93,23 +93,6 @@ pub struct GraphQlInterfaceType {
     pub possible_types: Vec<GraphQlTypeRef>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GraphQlEnumType {
-    pub name: String,
-    pub description: Option<String>,
-    pub enum_values: Vec<EnumValue>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct EnumValue {
-    pub name: String,
-    pub description: Option<String>,
-    pub is_deprecated: bool,
-    pub deprecation_reason: Option<String>,
-}
-
 /// A GraphQL field.
 #[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -132,6 +115,31 @@ pub struct Field {
 
     /// The reason the field is deprecated.
     pub deprecation_reason: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GraphQlEnumType {
+    pub name: String,
+    pub description: Option<String>,
+    pub enum_values: Vec<EnumValue>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EnumValue {
+    pub name: String,
+    pub description: Option<String>,
+    pub is_deprecated: bool,
+    pub deprecation_reason: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GraphQlInputObjectType {
+    pub name: String,
+    pub description: Option<String>,
+    pub input_fields: Vec<InputValue>,
 }
 
 #[derive(Debug, Deserialize, Clone)]

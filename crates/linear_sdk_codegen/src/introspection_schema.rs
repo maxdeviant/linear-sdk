@@ -49,8 +49,6 @@ pub enum GraphQlFullType {
     Union,
     Enum(GraphQlEnumType),
     InputObject(GraphQlInputObjectType),
-    List,
-    NonNull,
 }
 
 impl GraphQlFullType {
@@ -62,8 +60,6 @@ impl GraphQlFullType {
             Self::Union => None,
             Self::Enum(r#enum) => Some(r#enum.name.clone()),
             Self::InputObject(input_object) => Some(input_object.name.clone()),
-            Self::List => None,
-            Self::NonNull => None,
         }
     }
 }

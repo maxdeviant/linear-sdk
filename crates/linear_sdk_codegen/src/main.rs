@@ -5,7 +5,10 @@ use std::io::{BufReader, Write};
 use std::process::Command;
 
 use heck::{ToPascalCase, ToSnakeCase};
-use instrospection_schema::{GraphQlTypeKind, GraphQlTypeRef, IntrospectionQuery};
+
+use instrospection_schema::{
+    Field, GraphQlTypeKind, GraphQlTypeRef, IntrospectionQuery, IntrospectionSchema,
+};
 
 fn resolve_type_name(ty: &GraphQlTypeRef) -> &String {
     match ty {
@@ -38,6 +41,37 @@ fn sanitize_name(name: String) -> String {
     name.replace("OAuth", "Oauth")
 }
 
+#[derive(Debug)]
+struct QueryType {
+    fields: Vec<Field>,
+}
+
+impl QueryType {
+    pub fn fields(&self) -> &[Field] {
+        &self.fields
+    }
+}
+
+impl TryFrom<&IntrospectionSchema> for QueryType {
+    type Error = &'static str;
+
+    fn try_from(schema: &IntrospectionSchema) -> Result<Self, Self::Error> {
+        let query_name = &schema.query_type.name;
+
+        let query_type = schema
+            .types
+            .iter()
+            .find(|ty| ty.name.as_ref() == Some(&query_name))
+            .ok_or("No Query type found")?;
+
+        let query_fields = query_type.fields.as_ref().ok_or("Query has no fields")?;
+
+        Ok(Self {
+            fields: query_fields.to_vec(),
+        })
+    }
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let schema_file = File::open("schema.json")?;
     let buf_reader = BufReader::new(schema_file);
@@ -46,20 +80,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let schema = schema_query.data.schema;
 
-    let query_name = schema.query_type.name;
-
-    let query_type = schema
-        .types
-        .iter()
-        .find(|ty| ty.name.as_ref() == Some(&query_name))
-        .expect("No Query type found");
-
-    let query_fields = query_type.fields.as_ref().expect("Query has no fields");
+    let query = QueryType::try_from(&schema)?;
 
     let mut emitted_graphql_modules: Vec<String> = Vec::new();
     let mut generated_client_impls: Vec<String> = Vec::new();
 
-    for field in query_fields {
+    for field in query.fields() {
         let field_type_name = resolve_type_name(&field.ty);
 
         let has_args = !field.args.is_empty();

@@ -52,7 +52,7 @@ pub enum GraphQlTypeKind {
     NonNull,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Field {
     pub name: String,
@@ -66,7 +66,7 @@ pub struct Field {
     pub deprecation_reason: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct InputValue {
     pub name: String,
@@ -78,7 +78,7 @@ pub struct InputValue {
     pub default_value: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(tag = "kind", rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum GraphQlTypeRef {
     Scalar { name: String },
@@ -91,7 +91,7 @@ pub enum GraphQlTypeRef {
     List(Box<OfType>),
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OfType {
     pub of_type: GraphQlTypeRef,

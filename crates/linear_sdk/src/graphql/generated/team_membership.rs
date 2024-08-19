@@ -30,7 +30,7 @@ pub mod team_membership {
         pub updated_at: DateTime,
         #[serde(rename = "archivedAt")]
         pub archived_at: Option<DateTime>,
-        pub owner: Option<Boolean>,
+        pub owner: Boolean,
         #[serde(rename = "sortOrder")]
         pub sort_order: Float,
     }

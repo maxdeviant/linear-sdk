@@ -34,7 +34,7 @@ pub mod comment {
         #[serde(rename = "editedAt")]
         pub edited_at: Option<DateTime>,
         #[serde(rename = "bodyData")]
-        pub body_data: String,
+        pub body_data: Option<String>,
         pub url: String,
     }
     #[derive(Deserialize, Debug)]

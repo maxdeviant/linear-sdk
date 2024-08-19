@@ -15,8 +15,8 @@ pub mod attachment {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type JSONObject = crate::graphql::custom_scalars::JSONObject;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type JSONObject = crate::graphql::custom_scalars::JSONObject;
     #[derive(Serialize)]
     pub struct Variables {
         pub id: String,
@@ -37,7 +37,7 @@ pub mod attachment {
         pub metadata: JSONObject,
         pub source: Option<JSONObject>,
         #[serde(rename = "sourceType")]
-        pub source_type: Option<JSONObject>,
+        pub source_type: Option<String>,
         #[serde(rename = "groupBySource")]
         pub group_by_source: Boolean,
     }

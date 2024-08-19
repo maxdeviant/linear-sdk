@@ -31,6 +31,9 @@ pub mod user_settings {
         #[serde(rename = "notificationPreferences")]
         pub notification_preferences: JSONObject,
         #[serde(rename = "unsubscribedFrom")]
+        #[deprecated(
+            note = "Use individual subscription fields instead. This field's value is now outdated."
+        )]
         pub unsubscribed_from: Vec<String>,
     }
     #[derive(Deserialize, Debug)]

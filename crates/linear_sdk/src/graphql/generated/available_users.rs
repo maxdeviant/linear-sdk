@@ -20,8 +20,9 @@ pub mod available_users {
     #[derive(Deserialize, Debug)]
     pub struct AuthResolverResponse {
         pub id: String,
+        #[deprecated(note = "Deprecated and not used anymore. Never populated.")]
         pub token: Option<String>,
-        pub email: Option<String>,
+        pub email: String,
         #[serde(rename = "allowDomainAccess")]
         pub allow_domain_access: Option<Boolean>,
         #[serde(rename = "lastUsedOrganizationId")]

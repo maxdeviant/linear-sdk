@@ -15,12 +15,12 @@ pub mod sync_entity_count {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type JSON = crate::graphql::custom_scalars::JSON;
+    type JSONObject = crate::graphql::custom_scalars::JSONObject;
     #[derive(Serialize)]
     pub struct Variables;
     #[derive(Deserialize, Debug)]
     pub struct EntityCountResponse {
-        pub counts: JSON,
+        pub counts: JSONObject,
     }
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {

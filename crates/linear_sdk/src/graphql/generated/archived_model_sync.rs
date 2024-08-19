@@ -34,6 +34,7 @@ pub mod archived_model_sync {
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {
         #[serde(rename = "archivedModelSync")]
+        #[deprecated(note = "Use streaming endpoint instead.")]
         pub archived_model_sync: ArchivedModelSyncArchivedModelSync,
     }
     pub type ArchivedModelSyncArchivedModelSync = ArchiveResponse;

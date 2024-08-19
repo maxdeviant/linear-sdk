@@ -57,10 +57,12 @@ pub mod team {
         #[serde(rename = "issueEstimationType")]
         pub issue_estimation_type: String,
         #[serde(rename = "issueOrderingNoPriorityFirst")]
+        #[deprecated(note = "This setting is no longer in use.")]
         pub issue_ordering_no_priority_first: Boolean,
         #[serde(rename = "issueEstimationAllowZero")]
         pub issue_estimation_allow_zero: Boolean,
         #[serde(rename = "issueSortOrderDefaultToBottom")]
+        #[deprecated(note = "Use setIssueSortOrderOnStateChange instead.")]
         pub issue_sort_order_default_to_bottom: Boolean,
         #[serde(rename = "issueEstimationExtended")]
         pub issue_estimation_extended: Boolean,
@@ -78,10 +80,13 @@ pub mod team {
         #[serde(rename = "groupIssueHistory")]
         pub group_issue_history: Boolean,
         #[serde(rename = "slackNewIssue")]
+        #[deprecated(note = "No longer is use")]
         pub slack_new_issue: Boolean,
         #[serde(rename = "slackIssueComments")]
+        #[deprecated(note = "No longer in use")]
         pub slack_issue_comments: Boolean,
         #[serde(rename = "slackIssueStatuses")]
+        #[deprecated(note = "No longer in use")]
         pub slack_issue_statuses: Boolean,
         #[serde(rename = "autoClosePeriod")]
         pub auto_close_period: Option<Float>,

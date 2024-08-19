@@ -46,7 +46,9 @@ pub mod notification {
     pub enum NotificationOn {
         IssueNotification,
         ProjectNotification,
+        InitiativeNotification,
         OauthClientApprovalNotification,
+        DocumentNotification,
     }
     #[derive(Deserialize, Debug)]
     pub struct ResponseData {

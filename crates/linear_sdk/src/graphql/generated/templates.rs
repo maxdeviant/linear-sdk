@@ -15,8 +15,8 @@ pub mod templates {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type JSON = crate::graphql::custom_scalars::JSON;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type JSON = crate::graphql::custom_scalars::JSON;
     #[derive(Serialize)]
     pub struct Variables;
     #[derive(Deserialize, Debug)]

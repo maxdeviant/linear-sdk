@@ -15,8 +15,8 @@ pub mod issue_vcs_branch_search {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     #[derive(Serialize)]
     pub struct Variables {
         pub branch_name: String,

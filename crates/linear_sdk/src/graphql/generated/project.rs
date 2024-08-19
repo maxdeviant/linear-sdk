@@ -15,8 +15,8 @@ pub mod project {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type TimelessDate = crate::graphql::custom_scalars::TimelessDate;
     #[derive(Serialize)]
     pub struct Variables {
         pub id: String,
@@ -37,6 +37,7 @@ pub mod project {
         pub slug_id: String,
         pub icon: Option<String>,
         pub color: String,
+        #[deprecated(note = "Use project.status instead")]
         pub state: String,
         #[serde(rename = "projectUpdateRemindersPausedUntilAt")]
         pub project_update_reminders_paused_until_at: Option<DateTime>,
@@ -65,10 +66,13 @@ pub mod project {
         #[serde(rename = "inProgressScopeHistory")]
         pub in_progress_scope_history: Vec<Float>,
         #[serde(rename = "slackNewIssue")]
+        #[deprecated(note = "No longer in use")]
         pub slack_new_issue: Boolean,
         #[serde(rename = "slackIssueComments")]
+        #[deprecated(note = "No longer in use")]
         pub slack_issue_comments: Boolean,
         #[serde(rename = "slackIssueStatuses")]
+        #[deprecated(note = "No longer is use")]
         pub slack_issue_statuses: Boolean,
         pub url: String,
         pub progress: Float,

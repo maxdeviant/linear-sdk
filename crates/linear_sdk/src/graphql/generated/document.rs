@@ -15,8 +15,8 @@ pub mod document {
     type Int = i64;
     #[allow(dead_code)]
     type ID = String;
-    type JSONObject = crate::graphql::custom_scalars::JSONObject;
     type DateTime = crate::graphql::custom_scalars::DateTime;
+    type JSON = crate::graphql::custom_scalars::JSON;
     #[derive(Serialize)]
     pub struct Variables {
         pub id: String,
@@ -34,7 +34,8 @@ pub mod document {
         pub title: String,
         pub content: Option<String>,
         #[serde(rename = "contentData")]
-        pub content_data: Option<JSONObject>,
+        #[deprecated(note = "Use content instead.")]
+        pub content_data: Option<JSON>,
         pub icon: Option<String>,
         pub color: Option<String>,
         #[serde(rename = "slugId")]
